@@ -12,11 +12,9 @@ class UsuarioSistema(AbstractUser):
         ("Paciente", "Paciente"),
     ]
     
-    id_usuario = models.AutoField(primary_key=True)
-    nombre_usuario = models.CharField(max_length=50, unique=True, verbose_name="Nombre de Usuario")
-    contrasena = models.CharField(max_length=128, verbose_name="Contraseña")
+    # Usar username de AbstractUser como nombre_usuario
+    # Usar password de AbstractUser como contrasena
     rol = models.CharField(max_length=20, choices=ROL_CHOICES, verbose_name="Rol")
-    email = models.EmailField(verbose_name="Correo Electrónico")
     fecha_creacion = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de Creación")
     
     class Meta:
@@ -25,4 +23,14 @@ class UsuarioSistema(AbstractUser):
         verbose_name_plural = "Usuarios del Sistema"
     
     def __str__(self):
-        return f"{self.nombre_usuario} ({self.rol})"
+        return f"{self.username} ({self.rol})"
+    
+    @property
+    def nombre_usuario(self):
+        """Propiedad para compatibilidad con el nombre anterior"""
+        return self.username
+    
+    @property
+    def contrasena(self):
+        """Propiedad para compatibilidad con el nombre anterior"""
+        return self.password
