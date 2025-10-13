@@ -4,8 +4,6 @@ from .personal_salud import PersonalSalud
 
 
 class EvolucionClinica(models.Model):
-    """Modelo para evoluciones clínicas"""
-    
     id_evolucion = models.AutoField(primary_key=True)
     id_episodio = models.ForeignKey(
         HistoriaClinica, 

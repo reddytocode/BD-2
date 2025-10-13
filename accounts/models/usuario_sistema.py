@@ -3,8 +3,6 @@ from django.contrib.auth.models import AbstractUser
 
 
 class UsuarioSistema(AbstractUser):
-    """Modelo para usuarios del sistema médico"""
-    
     ROL_CHOICES = [
         ("Administrador", "Administrador"),
         ("Medico", "Médico"),
@@ -12,8 +10,6 @@ class UsuarioSistema(AbstractUser):
         ("Paciente", "Paciente"),
     ]
     
-    # Usar username de AbstractUser como nombre_usuario
-    # Usar password de AbstractUser como contrasena
     rol = models.CharField(max_length=20, choices=ROL_CHOICES, verbose_name="Rol")
     fecha_creacion = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de Creación")
     
