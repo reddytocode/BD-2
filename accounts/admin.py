@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import UsuarioSistema, HistoriaClinica, Paciente
+from django.contrib.auth.models import User, Group, Permission
+
+from .models import UsuarioSistema, HistoriaClinica, Paciente, Servicio
 
 @admin.register(Paciente)
 class PacienteAdmin(admin.ModelAdmin):
@@ -8,6 +10,11 @@ class PacienteAdmin(admin.ModelAdmin):
     list_filter = ("sexo", "fecha_nacimiento")
     search_fields = ("ci", "nombres", "apellidos", "telefono", "correo")
     ordering = ("apellidos", "nombres")
+
+
+@admin.register(Servicio)
+class ServicioAdmin(admin.ModelAdmin):
+    pass
 
 
 

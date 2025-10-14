@@ -4,26 +4,44 @@ from .personal_salud import PersonalSalud
 
 
 class Servicio(models.Model):
-    """Modelo para servicios hospitalarios"""
-    
     id_servicio = models.AutoField(primary_key=True)
     nombre_servicio = models.CharField(max_length=200, verbose_name="Nombre del Servicio")
     descripcion = models.TextField(blank=True, null=True, verbose_name="Descripción")
     activo = models.BooleanField(default=True, verbose_name="Activo")
     fecha_creacion = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de Creación")
+    personal_de_salud = models.ForeignKey(
+        PersonalSalud,
+        on_delete=models.CASCADE,
+        verbose_name="Personal de Salud"
+    )
     
     class Meta:
         db_table = "servicio"
-        verbose_name = "Servicio"
-        verbose_name_plural = "Servicios"
+        verbose_name = "Atención Médica"
+        verbose_name_plural = "Atenciones Médicas"
     
     def __str__(self):
         return self.nombre_servicio
 
+# expediente clinico (archivo principal del paciente) (tambien hay de internación)
+# Motivos de consulta: cada vez que viene, se añade al expediente clinico
+# . historia clinicca - primera vez - laboratorio - gabinete - referente a todo lo que ha pasado en su vida:
+# Antecedentes: al nacer, al crecer, al adulto, al envejecer.
+# Cuando vas a consulta: por que viene a consulta externa.
+
+
+# gabinete: tomografias, ecografias, etc.
+# laboratorio: examen de sangre, orina, etc.
+
+# segunda consulta: abres su expediente con su historial clinico
+# Historia a nivel cornologica, cuando vino. Especialidad: neumologia, cardiologia. 
+# Rol de las enfermeras: 
+# Hoja de ingreso: una sola, datos del paciente: Presion, signos vitales, etc. Siempre que visita se debe llenar esos datos.
+# Hoja de Egreso: una sola vez 
+# sistema ordenar 
 
 class AtencionMedica(models.Model):
     """Modelo para atenciones médicas (relación entre paciente, profesional y servicio)"""
-    
     id_atencion = models.AutoField(primary_key=True)
     id_paciente = models.ForeignKey(
         Paciente, 
