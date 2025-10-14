@@ -2,7 +2,6 @@
 from .usuario_sistema import UsuarioSistema
 from .paciente import Paciente
 from .personal_salud import PersonalSalud
-from .servicio import Servicio, AtencionMedica
 from .historia_clinica import HistoriaClinica
 from .evolucion_clinica import EvolucionClinica
 from .orden_medica import OrdenMedica
@@ -13,8 +12,6 @@ __all__ = [
     "UsuarioSistema",
     "Paciente",
     "PersonalSalud",
-    "Servicio",
-    "AtencionMedica",
     "HistoriaClinica",
     "EvolucionClinica",
     "OrdenMedica",
@@ -40,6 +37,7 @@ class RegistroGabinete(models.Model):
     gabinete = models.ForeignKey(Gabinete, on_delete=models.CASCADE, verbose_name="Gabinete")
     fecha_registro = models.DateTimeField(verbose_name="Fecha de Registro")
     descripcion = models.TextField(verbose_name="Descripción")
+    personal_salud = models.ForeignKey(PersonalSalud, on_delete=models.CASCADE, verbose_name="Personal de Salud")
 
 
 TIPO_LABORATORIO_CHOICES = [
@@ -58,6 +56,7 @@ class RegistroLaboratorio(models.Model):
     laboratorio = models.ForeignKey(Laboratorio, on_delete=models.CASCADE, verbose_name="Laboratorio")
     fecha_registro = models.DateTimeField(verbose_name="Fecha de Registro", auto_now_add=True)
     descripcion = models.TextField(verbose_name="Descripción")
+    personal_salud = models.ForeignKey(PersonalSalud, on_delete=models.CASCADE, verbose_name="Personal de Salud")
 
 class ExpedienteClinico(models.Model):
     id = models.AutoField(primary_key=True)

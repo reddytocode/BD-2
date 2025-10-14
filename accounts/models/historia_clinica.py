@@ -1,12 +1,9 @@
 from django.db import models
 from .paciente import Paciente
 from .personal_salud import PersonalSalud
-from .servicio import Servicio
 
 
 class HistoriaClinica(models.Model):
-    """Modelo para historias clínicas"""
-    
     id_historia = models.AutoField(primary_key=True)
     id_paciente = models.ForeignKey(
         Paciente, 
@@ -17,11 +14,6 @@ class HistoriaClinica(models.Model):
         PersonalSalud, 
         on_delete=models.CASCADE, 
         verbose_name="Profesional de Salud"
-    )
-    id_servicio = models.ForeignKey(
-        Servicio, 
-        on_delete=models.CASCADE, 
-        verbose_name="Servicio"
     )
     fecha_ingreso = models.DateTimeField(verbose_name="Fecha de Ingreso")
     fecha_alta = models.DateTimeField(blank=True, null=True, verbose_name="Fecha de Alta")
