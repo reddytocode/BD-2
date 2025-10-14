@@ -1,7 +1,27 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from .models import UsuarioSistema, HistoriaClinica, Paciente
+from .models import UsuarioSistema, HistoriaClinica, Paciente, Gabinete, Laboratorio, RegistroGabinete, RegistroLaboratorio, ExpedienteClinico
+
+@admin.register(Gabinete)
+class GabineteAdmin(admin.ModelAdmin):
+    list_display = ("id", "descripcion")
+
+@admin.register(Laboratorio)
+class LaboratorioAdmin(admin.ModelAdmin):
+    list_display = ("id", "descripcion")
+
+@admin.register(RegistroGabinete)
+class RegistroGabineteAdmin(admin.ModelAdmin):
+    list_display = ("id", "tipo", "gabinete", "fecha_registro", "descripcion", "personal_salud")
+
+@admin.register(RegistroLaboratorio)
+class RegistroLaboratorioAdmin(admin.ModelAdmin):
+    list_display = ("id", "tipo", "laboratorio", "fecha_registro", "descripcion", "personal_salud")
+
+@admin.register(ExpedienteClinico)
+class ExpedienteClinicoAdmin(admin.ModelAdmin):
+    list_display = ("id", "id_historia", "id_paciente", "id_gabinete", "id_laboratorio")
 
 @admin.register(Paciente)
 class PacienteAdmin(admin.ModelAdmin):

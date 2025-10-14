@@ -19,7 +19,6 @@ class Paciente(models.Model):
     sexo = models.CharField(max_length=1, choices=SEXO_CHOICES, verbose_name="Sexo")
     direccion = models.TextField(verbose_name="Dirección")
     telefono = models.CharField(max_length=20, verbose_name="Teléfono")
-    correo = models.EmailField(verbose_name="Correo Electrónico")
     id_usuario = models.OneToOneField(
         UsuarioSistema, 
         on_delete=models.CASCADE, 

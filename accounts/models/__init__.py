@@ -60,8 +60,8 @@ class RegistroLaboratorio(models.Model):
 
 class ExpedienteClinico(models.Model):
     id = models.AutoField(primary_key=True)
-    id_paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE, verbose_name="Paciente")
-    id_historia = models.ForeignKey(HistoriaClinica, on_delete=models.CASCADE, verbose_name="Historia Clínica")
-    id_gabinete = models.ForeignKey(Gabinete, on_delete=models.CASCADE, verbose_name="Gabinete")
-    id_laboratorio = models.ForeignKey(Laboratorio, on_delete=models.CASCADE, verbose_name="Laboratorio")
+    id_paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE, verbose_name="Paciente", null=True, blank=True)
+    id_historia = models.ForeignKey(HistoriaClinica, on_delete=models.CASCADE, verbose_name="Historia Clínica", null=True, blank=True)
+    id_gabinete = models.ForeignKey(Gabinete, on_delete=models.CASCADE, verbose_name="Gabinete", null=True, blank=True)
+    id_laboratorio = models.ForeignKey(Laboratorio, on_delete=models.CASCADE, verbose_name="Laboratorio", null=True, blank=True)
     
