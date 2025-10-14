@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from .models import UsuarioSistema, HistoriaClinica, Paciente, Gabinete, Laboratorio, RegistroGabinete, RegistroLaboratorio, ExpedienteClinico
+from .models import UsuarioSistema, HistoriaClinica, Paciente, Gabinete, Laboratorio, RegistroGabinete, RegistroLaboratorio, ExpedienteClinico, PersonalSalud
 
 @admin.register(Gabinete)
 class GabineteAdmin(admin.ModelAdmin):
@@ -30,6 +30,13 @@ class PacienteAdmin(admin.ModelAdmin):
     search_fields = ("ci", "nombres", "apellidos", "telefono", "correo")
     ordering = ("apellidos", "nombres")
 
+
+@admin.register(PersonalSalud)
+class PersonalSaludAdmin(admin.ModelAdmin):
+    list_display = ("id_profesional", "nombres", "apellidos", "especialidad", "matricula", "tipo")
+    list_filter = ("tipo", "especialidad")
+    search_fields = ("nombres", "apellidos", "matricula", "especialidad")
+    ordering = ("apellidos", "nombres")
 
 @admin.register(HistoriaClinica)
 class HistoriaClinicaAdmin(admin.ModelAdmin):
