@@ -13,11 +13,13 @@ from .models import (
     RegistroLaboratorio,
     UsuarioSistema,
 )
-from .models import HojaIngreso
+
+from .models.historia_clinica import HojaIngreso
+
 
 @admin.register(HojaIngreso)
 class HojaIngresoAdmin(admin.ModelAdmin):
-    list_display = ("id", "fecha_ingreso", "observaciones_ingreso")
+    pass
 
 
 @admin.register(CitaMedica)
