@@ -2,10 +2,7 @@
 from .usuario_sistema import UsuarioSistema
 from .paciente import Paciente
 from .personal_salud import PersonalSalud
-from .historia_clinica import HistoriaClinica
-from .evolucion_clinica import EvolucionClinica
-from .orden_medica import OrdenMedica
-from .resultado_clinico import ResultadoClinico
+from .historia_clinica import HistoriaClinica, CitaMedica
 
 
 __all__ = [
@@ -13,9 +10,7 @@ __all__ = [
     "Paciente",
     "PersonalSalud",
     "HistoriaClinica",
-    "EvolucionClinica",
-    "OrdenMedica",
-    "ResultadoClinico",
+    "CitaMedica"
 ]
 
 
